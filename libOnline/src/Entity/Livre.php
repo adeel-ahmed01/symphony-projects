@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\LivreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity(repositoryClass=LivreRepository::class)
@@ -41,6 +44,22 @@ class Livre
      * @ORM\Column(type="string", length=45)
      */
     private $editeur;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commandes::class, mappedBy="livre", orphanRemoval=true)
+     */
+    private $livres;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Factures::class, inversedBy="livre", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $facture;
+
+    public function __construct()
+    {
+        $this->livres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +122,44 @@ class Livre
     public function setEditeur(string $editeur): self
     {
         $this->editeur = $editeur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Users[]
+     */
+    public function getLivre(): Collection
+    {
+        return $this->livres;
+    }
+
+    public function addLivre(Users $livre): self
+    {
+        if (!$this->livres->contains($livre)) {
+            $this->livres[] = $livre;
+        }
+
+        return $this;
+    }
+
+    public function removeLivre(Users $livre): self
+    {
+        if ($this->livres->contains($livre)) {
+            $this->livres->removeElement($livre);
+        }
+
+        return $this;
+    }
+
+    public function getFacture(): ?Factures
+    {
+        return $this->facture;
+    }
+
+    public function setFacture(Factures $facture): self
+    {
+        $this->facture = $facture;
 
         return $this;
     }
