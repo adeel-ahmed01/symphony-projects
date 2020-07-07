@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\LivreRepository;
+use App\Repository\OeuvreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * @ORM\Entity(repositoryClass=LivreRepository::class)
+ * @ORM\Entity(repositoryClass=OeuvreRepository::class)
  */
-class Livre
+class Oeuvre
 {
     /**
      * @ORM\Id()
@@ -26,38 +25,24 @@ class Livre
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $resume;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $prix;
-
-    /**
      * @ORM\Column(type="string", length=45)
      */
     private $editeur;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commandes::class, mappedBy="livre", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Livre::class, mappedBy="oeuvre")
      */
     private $livres;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Oeuvre::class, inversedBy="livres")
+     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="oeuvres")
      */
-    private $oeuvre;
+    private $thematique;
 
     public function __construct()
     {
         $this->livres = new ArrayCollection();
+        $this->thematique = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,42 +62,6 @@ class Livre
         return $this;
     }
 
-    public function getResume(): ?string
-    {
-        return $this->resume;
-    }
-
-    public function setResume(string $resume): self
-    {
-        $this->resume = $resume;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getPrix(): ?float
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(float $prix): self
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
     public function getEditeur(): ?string
     {
         return $this->editeur;
@@ -126,41 +75,59 @@ class Livre
     }
 
     /**
-     * @return Collection|Users[]
+     * @return Collection|Livre[]
      */
-    public function getLivre(): Collection
+    public function getLivres(): Collection
     {
         return $this->livres;
     }
 
-    public function addLivre(Users $livre): self
+    public function addLivre(Livre $livre): self
     {
         if (!$this->livres->contains($livre)) {
             $this->livres[] = $livre;
+            $livre->setOeuvre($this);
         }
 
         return $this;
     }
 
-    public function removeLivre(Users $livre): self
+    public function removeLivre(Livre $livre): self
     {
         if ($this->livres->contains($livre)) {
             $this->livres->removeElement($livre);
+            // set the owning side to null (unless already changed)
+            if ($livre->getOeuvre() === $this) {
+                $livre->setOeuvre(null);
+            }
         }
 
         return $this;
     }
 
-    public function getOeuvre(): ?Oeuvre
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getThematique(): Collection
     {
-        return $this->oeuvre;
+        return $this->thematique;
     }
 
-    public function setOeuvre(?Oeuvre $oeuvre): self
+    public function addThematique(Categorie $thematique): self
     {
-        $this->oeuvre = $oeuvre;
+        if (!$this->thematique->contains($thematique)) {
+            $this->thematique[] = $thematique;
+        }
 
         return $this;
     }
 
+    public function removeThematique(Categorie $thematique): self
+    {
+        if ($this->thematique->contains($thematique)) {
+            $this->thematique->removeElement($thematique);
+        }
+
+        return $this;
+    }
 }
