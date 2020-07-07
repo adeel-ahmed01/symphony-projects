@@ -61,7 +61,7 @@ class CartController extends AbstractController
         // On remplace le panier de la session par le nouveau panier mis à jour
         $session->set('cart', $cart);
 
-        return $this->redirectToRoute('cart');
+        return $this->redirectToRoute('home');
     }
 
     /**

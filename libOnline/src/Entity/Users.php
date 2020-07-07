@@ -73,11 +73,6 @@ class Users implements UserInterface
      */
     private $livres;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isVerified = false;
-
     public function __construct()
     {
         $this->livres = new ArrayCollection();
@@ -261,15 +256,4 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
 }
