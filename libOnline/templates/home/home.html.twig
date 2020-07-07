@@ -22,11 +22,17 @@
         {% for livre in livres %}
             <div class="card book">
                 <div class="card-body">
-                    <img src="{{livre.image}}" class="card-img-top" style="width: 15rem;">
+                    <a href="books/{{livre.id}}">
+                        <img src="{{livre.image}}" class="card-img-top" style="width: 15rem;" >
+                    </a>
                     <hr>
                     <h3> {{livre.titre}} </h3>
                     <p> <strong> Prix : </strong> {{livre.prix}} € </p>
                     <p> <strong> Editeur : </strong> {{livre.editeur}} </p>
+                    <hr>
+                    <p class="add">
+                        Ajouter au panier <i class="fas fa-plus-circle"></i> 
+                    </p>
                 </div>
             </div>
         {% endfor %}
