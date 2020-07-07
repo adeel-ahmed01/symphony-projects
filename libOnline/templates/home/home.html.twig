@@ -1,6 +1,19 @@
 {% extends 'base.html.twig' %}
 
 
+{# STYLESHEETS #}
+{% block stylesheets %}            
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block javascripts %}            
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}
+
+
+
+{# CONTENT #}
 {% block content %}
-    <h1>Hello Errbady</h1>
+    <h1 class="hello">Hello Errbady</h1>
+    
 {% endblock %}
