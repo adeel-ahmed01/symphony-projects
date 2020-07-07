@@ -3,15 +3,15 @@
 {% block title 'LibOnline' %}
 
 {# STYLESHEETS #}
-{% block stylesheets %}            
+{% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('home') }}
 {% endblock %}
 
-{% block javascripts %}            
+{% block javascripts %}
+    {{ parent() }}
     {{ encore_entry_script_tags('home') }}
 {% endblock %}
-
-
 
 {# CONTENT #}
 {% block body %}
