@@ -14,7 +14,23 @@
 
 
 {# CONTENT #}
-{% block content %}
-    <h1 class="hello">Hello Errbady</h1>
-    
+{% block body %}
+
+    {# Tous les livres #}
+    <div class="container">
+        <div class="row">
+        {% for livre in livres %}
+            <div class="card book">
+                <div class="card-body">
+                    <img src="{{livre.image}}" class="card-img-top" style="width: 15rem;">
+                    <hr>
+                    <h3> {{livre.titre}} </h3>
+                    <p> <strong> Prix : </strong> {{livre.prix}} € </p>
+                    <p> <strong> Editeur : </strong> {{livre.editeur}} </p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}
