@@ -48,6 +48,12 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
+
+        <div class="nav navbar-nav navbar-right">
+            <a class="btn btn-secondary" href="{{ path('cart') }}">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Panier <span
+                        class="badge bg-dark text-light">{{ app.request.session.get('cart') | length }}</span></a>
+        </div>
     </nav>
     {# ./ Navbar #}
 {% block body %}{% endblock %}
