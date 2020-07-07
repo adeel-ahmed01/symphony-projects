@@ -50,12 +50,6 @@ class Livre
      */
     private $livres;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Factures::class, inversedBy="livre", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $facture;
-
     public function __construct()
     {
         $this->livres = new ArrayCollection();
@@ -152,15 +146,4 @@ class Livre
         return $this;
     }
 
-    public function getFacture(): ?Factures
-    {
-        return $this->facture;
-    }
-
-    public function setFacture(Factures $facture): self
-    {
-        $this->facture = $facture;
-
-        return $this;
-    }
 }

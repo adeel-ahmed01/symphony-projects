@@ -8,17 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-
     /**
-    * @Route("/home")
-    */
-    public function home()
+     * @Route("/", name="home")
+     * @return Response
+     */
+    public function index(): Response
     {
-        $number = random_int(0, 100);
 
-        return $this->render('home/home.html.twig', [
-            'number' => $number,
-        ]);
-
+        return $this->render('home/home.html.twig');
     }
 }
