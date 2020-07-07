@@ -31,7 +31,9 @@
                     <p> <strong> Editeur : </strong> {{livre.editeur}} </p>
                     <hr>
                     <p class="add">
-                        Ajouter au panier <i class="fas fa-plus-circle"></i> 
+                        <a href="{{ path('cart_add', {'livreId': livre.id}) }}">
+                            Ajouter au panier <i class="fas fa-plus-circle"></i>
+                        </a>
                     </p>
                 </div>
             </div>
