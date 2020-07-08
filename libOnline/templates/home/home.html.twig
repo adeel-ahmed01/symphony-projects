@@ -16,9 +16,32 @@
 {# CONTENT #}
 {% block body %}
 
+    {# Formulaire #}
+    <div class="card filters">
+        <form class="form-inline my-2 my-lg-0" action="{{path('home_filter')}}" method="POST">
+            <h3>Recherche</h3>
+            <hr>
+            <input 
+                class="form-control mr-sm-2" 
+                id="search"
+                name="search"
+                type="text" placeholder="Rechercher..." 
+                aria-label="Search"
+                >
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+
     {# Tous les livres #}
     <div class="container">
         <div class="row">
+        
+        {# Affichage aucun livre trouvé #}
+        {% if livres is empty %}
+            <p> Aucun résultat trouvé </p>
+        {% endif  %}
+
+        {# Affiches livres #}
         {% for livre in livres %}
             <div class="card book">
                 <div class="card-body">
