@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UsersRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Users implements UserInterface
+class Users implements UserInterface,\Serializable
 {
     /**
      * @ORM\Id()
@@ -28,6 +28,7 @@ class Users implements UserInterface
     private $email;
 
     /**
+     * @return (Role|string)[] The user roles
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -144,7 +145,7 @@ class Users implements UserInterface
      */
     public function getSalt()
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        return null;
     }
 
     /**
@@ -154,6 +155,34 @@ class Users implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+    * @return string the string representation of the object or null
+    */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password
+        ]);
+    }
+
+    /**
+     * Constructs the object
+     * @param string $serialized <p>
+     * The string representation of the object.
+     * </p>
+     * @return void
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password
+            ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
     public function getNom(): ?string
