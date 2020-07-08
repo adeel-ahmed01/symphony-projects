@@ -21,7 +21,7 @@ class DashboardController extends AbstractDashboardController
 
         $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
 
-        // return $this->redirect($routeBuilder->setController(LivreCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(LivreCrudController::class)->generateUrl());
     }
 
 
