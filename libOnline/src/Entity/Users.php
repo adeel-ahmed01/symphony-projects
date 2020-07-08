@@ -39,32 +39,32 @@ class Users implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $codepostal;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $ville;
 
     /**
-     * @ORM\Column(type="integer", length=10)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $tel;
 
