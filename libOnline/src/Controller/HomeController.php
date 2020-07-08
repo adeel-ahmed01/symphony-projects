@@ -23,7 +23,6 @@ class HomeController extends AbstractController
         
         return $this->render('home/home.html.twig', [
             'livres' => $livres,
-            'se' => ''
         ] );
     }
 
@@ -36,20 +35,30 @@ class HomeController extends AbstractController
 
         if ( $searchString = $request->get('search') ) {
             
+            // Search string and categories
             $searchString = strtolower($searchString);
+            $categorie = $request->get('categorie');
+
+            // Filtered livres
             $oldLivres = $livreRepository->findAll();
             $newLivres = [];
             foreach($oldLivres as $livre) {
-                $title = strtolower($livre->getTitre());
-                if (strpos($title, $searchString) !== false ) {
-                    $newLivres[] = $livre;
+                // 
+                if ( $categorie === 'titre') {
+                    $title = strtolower($livre->getTitre());
+                    if (strpos($title, $searchString) !== false ) {
+                        $newLivres[] = $livre;
+                    }
                 }
+                
             }
         
             return $this->render('home/home.html.twig', [
                 'livres' => $newLivres,
             ] );
         }
+
+
        
     }
 }

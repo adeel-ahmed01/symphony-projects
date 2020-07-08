@@ -18,16 +18,27 @@
 
     {# Formulaire #}
     <div class="card filters">
+        <h3>Recherche</h3>
         <form class="form-inline my-2 my-lg-0" action="{{path('home_filter')}}" method="POST">
-            <h3>Recherche</h3>
-            <hr>
+           
+            {# Champ recherche #}
             <input 
                 class="form-control mr-sm-2" 
                 id="search"
                 name="search"
                 type="text" placeholder="Rechercher..." 
                 aria-label="Search"
-                >
+            >
+
+            {# Catégorie de recherche #}
+            <div class="form-group">
+                <select class="form-control" id="categorie" name="categorie">
+                    <option value="titre">Titre</option>
+                    <option value="editeur">Editeur</option>
+                    <option value="auteur">Auteur</option>
+                </select>
+            </div>
+
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -35,7 +46,7 @@
     {# Tous les livres #}
     <div class="container">
         <div class="row">
-        
+
         {# Affichage aucun livre trouvé #}
         {% if livres is empty %}
             <p> Aucun résultat trouvé </p>
