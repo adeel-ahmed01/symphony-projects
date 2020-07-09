@@ -27,21 +27,23 @@
             </div>
 
             {# Right side #}
-
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_admin_dashboard_index') }}">
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                        </a>
-                    </li>
+                    {% if app.user.roles == 'ROLE_ADMIN' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_admin_dashboard_index') }}">
+                                <i class="fa fa-cog" aria-hidden="true">Admin</i>
+                            </a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{path('profile.edit', {id: app.user.id})}}">Mes informations</a></li>
-                            <li><a class="nav-link" href="{{ path('app_logout') }}">
+                            <br>
+                            <li><a href="{{ path('app_logout') }}">
                                     Se déconnecter
                                 </a>
                             </li>
@@ -49,42 +51,8 @@
                     </li>
                 {% else %}
                     <li class="nav-item dropdown">
-<<<<<<< HEAD
                         <a class="btn btn-default btn-info navbar-btn mr-1" href="{{ path('login') }}" role="button">S'identifier <span class="caret"></span></a>
                         <a class="btn btn-default btn-warning" href="{{ path('registration.register') }}"><b>Créer un compte </b></a>
-                        {#<ul id="login-dp" class="dropdown-menu" role="menu">
-=======
-                        <a class="btn btn-default btn-info navbar-btn mr-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">S'identifier <span class="caret"></span></a>
-                        <ul id="login-dp" class="dropdown-menu w100 text-center" role="menu">
->>>>>>> 3f6ae6f21e7360825dc462eda61de0a24b474da2
-                            <li class="bg-transparent">
-                                <div class="row bg-transparent m-3">
-                                    <div class="col-md-12">
-                                        <form class="form-sign-in" method="post" id="login-nav">
-                                            <div class="form-group">
-<<<<<<< HEAD
-                                                <label class="sr-only" for="_username">Email address</label>
-                                                <input type="email" class="form-control" id="registration_email" name="_username" placeholder="Email address" required>
-=======
-                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                <input type="email" class="form-control" id="registration_email" name="_email" placeholder="Email" required>
->>>>>>> 3f6ae6f21e7360825dc462eda61de0a24b474da2
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="sr-only" for="_password">Password</label>
-                                                <input type="password" class="form-control" id="registration_password" name="_password" placeholder="Password" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="bottom text-center">
-                                        Nouveau client ? <a class="btn btn-default btn-warning" href="{{ path('registration.register') }}"><b>Créer un compte</b></a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>#}
                     </li>
                 {% endif %}
                 <li class="nav-item">

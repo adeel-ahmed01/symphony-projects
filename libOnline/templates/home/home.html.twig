@@ -71,7 +71,7 @@
                     <h4 class="text-center"> {{livre.titre}} </h4>
                     <div class="d-flex justify-content-between">
                         <p> <strong> Prix : </strong> {{livre.prix}} € </p>
-                        <p class="mb-0"> <strong> Editeur : </strong> {{livre.editeur}}</p>
+                        <p class="mb-0"> <strong> Auteur : </strong> {{livre.auteur}}</p>
                     </div>
                     <div class="text-right align-bottom">
                         <a class="btn btn-secondary rounded-circle" href="{{ path('cart_add', {'livreId': livre.id}) }}">

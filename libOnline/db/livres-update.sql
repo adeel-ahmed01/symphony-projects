@@ -1,4 +1,4 @@
-INSERT INTO `livre`(`id`, `titre`, `resume`, `image`, `prix`, `editeur`)
+INSERT INTO `livre`(`id`, `titre`, `resume`, `image`, `prix`, `auteur`)
 VALUES 
 (
     1,
@@ -6,7 +6,7 @@ VALUES
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos libero fuga sit neque",
     "https://www.pluggedin.com/wp-content/uploads/2020/01/placeholder_book.jpg",
     15,
-    "Eyerolles"
+    "Cyprii"
 ),
 (
     2,
@@ -14,7 +14,7 @@ VALUES
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos libero fuga sit neque",
     "https://www.pluggedin.com/wp-content/uploads/2020/01/placeholder_book.jpg",
     10,
-    "Eyerolles"
+    "Cyprii"
 ),
 (
     3,
@@ -22,15 +22,15 @@ VALUES
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos libero fuga sit neque",
     "https://www.pluggedin.com/wp-content/uploads/2020/01/placeholder_book.jpg",
     25,
-    "Eyerolles"
+    "Cyprii"
 ),
 (
     4,
-    "Le seigneur des annaux",
+    "Le seigneur des anneaux",
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos libero fuga sit neque",
     "https://www.pluggedin.com/wp-content/uploads/2020/01/placeholder_book.jpg",
     7,
-    "New Editor"
+    "Tolkien"
 ),
 (
     5,
@@ -38,5 +38,5 @@ VALUES
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos libero fuga sit neque",
     "https://www.pluggedin.com/wp-content/uploads/2020/01/placeholder_book.jpg",
     15,
-    "LastOnes"
+    "Caesar"
 )
