@@ -44,8 +44,8 @@
                         <a class="btn btn-default btn-danger text-white mr-3" href="{{ path('app_logout') }}">
                             Se déconnecter
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{path('profile.edit', {id: app.user.id})}}">Mes informations</a></li>
+                        <ul class="dropdown-menu mx-auto">
+                            <li><a class="text-center ml-3" href="{{path('profile.edit', {id: app.user.id})}}">Mes informations</a></li>
                         </ul>
                     </li>
                 {% else %}

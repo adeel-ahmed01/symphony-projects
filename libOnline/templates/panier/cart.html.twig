@@ -24,10 +24,13 @@
                             <td class="text-center px-0">
                                 <img src="{{item.livre.image}}" class="img-thumbnail w-25 h-30" style="width: 15rem;" >
                             </td>
-                            <td class="align-middle">{{ item.livre.titre }}</td>
-                            <td class="text-right align-middle">{{ item.livre.prix }} €</td>
-                            <td class="text-center align-middle">{{ item.quantity }}</td>
-                            <td class="text-right align-middle">{{ item.livre.prix * item.quantity }} €</td>
+                            <td class="align-middle">
+                                <h6 class="my-0">{{ item.livre.titre }}</h6>
+                                <small class="text-muted">{{ item.livre.auteur }}</small>
+                            </td>
+                            <td class="text-right align-middle"><h6 class="my-0">{{ item.livre.prix }} €</h6></td>
+                            <td class="text-center align-middle"><h6 class="my-0">{{ item.quantity }}</h6></td>
+                            <td class="text-right align-middle"><h6 class="my-0">{{ item.livre.prix * item.quantity }} €</h6></td>
                             <td class="text-center align-middle">
                                 <a href="{{ path('cart_remove', {'livreId': item.livre.id}) }}" class="btn btn-danger btn-sm">
                                     <i class="fas fa-times"></i>
