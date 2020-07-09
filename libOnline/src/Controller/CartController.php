@@ -32,6 +32,9 @@ class CartController extends AbstractController
 
         $cartTotal = $this->computeCartTotal($cartOfBooks);
 
+        $session->set('cartItems', $cartOfBooks);
+        $session->set('totalPanier', $cartTotal);
+
         return $this->render('panier/cart.html.twig', [
             'cartItems' => $cartOfBooks,
             'totalPanier' => $cartTotal

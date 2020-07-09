@@ -31,27 +31,25 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_admin_dashboard_index') }}">
+                        <a class="nav-link mr-2" href="{{ path('app_admin_dashboard_index') }}">
                             <i class="fa fa-cog" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user" aria-hidden="true"></i>
+                        <a href="#" class="dropdown-toggle mr-2" data-toggle="dropdown">
+                            <i class="fa fa-user fa-1x" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-default btn-danger text-white mr-3" href="{{ path('app_logout') }}">
+                            Se déconnecter
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{path('profile.edit', {id: app.user.id})}}">Mes informations</a></li>
-                            <li><a class="nav-link" href="{{ path('app_logout') }}">
-                                    Se déconnecter
-                                </a>
-                            </li>
                         </ul>
                     </li>
                 {% else %}
-                    <li class="nav-item dropdown">
-<<<<<<< HEAD
-                        <a class="btn btn-default btn-info navbar-btn mr-1" href="{{ path('login') }}" role="button">S'identifier <span class="caret"></span></a>
-                        <a class="btn btn-default btn-warning" href="{{ path('registration.register') }}"><b>Créer un compte </b></a>
+                    <li class="nav-item">
+                        <a class="btn btn-default btn-info text-white mr-1 " href="{{ path('login') }}" role="button"><b>S'identifier</b> <span class="caret"></span></a>
+                        <a class="btn btn-default btn-warning mr-3" href="{{ path('registration.register') }}"><b>Créer un compte </b></a>
                         {#<ul id="login-dp" class="dropdown-menu" role="menu">
 =======
                         <a class="btn btn-default btn-info navbar-btn mr-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">S'identifier <span class="caret"></span></a>
@@ -106,5 +104,14 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     {# Font awesome #}
     <script src="https://kit.fontawesome.com/5f876598f4.js" crossorigin="anonymous"></script>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2019-2020 Lib Online</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
