@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\LivreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -73,9 +74,11 @@ class CartController extends AbstractController
      * @Route("/cart/remove/{livreId}", name="cart_remove")
      * @param $livreId
      * @param SessionInterface $session
+     * @param Request $request
+     * @param LivreRepository $livreRepository
      * @return Response
      */
-    public function remove($livreId, SessionInterface $session): Response
+    public function remove($livreId, SessionInterface $session, Request $request, LivreRepository $livreRepository): Response
     {
         // On récupère le panier s'il en existe un, sinon on en crée un vide
         $cart = $session->get('cart', []);
@@ -83,11 +86,25 @@ class CartController extends AbstractController
         if (!empty($cart[$livreId])) {
             // Si le livre est dans le panier, on le retire
             unset($cart[$livreId]);
+
         }
         // On remplace le panier de la session par le nouveau panier mis à jour
         $session->set('cart', $cart);
 
-        return $this->redirectToRoute("cart");
+        $cartOfBooks = $this->getCartWithDetails($cart, $livreRepository);
+
+        $cartTotal = $this->computeCartTotal($cartOfBooks);
+
+        $session->set('cartItems', $cartOfBooks);
+        $session->set('totalPanier', $cartTotal);
+
+        if (sizeof($cart) <= 0) {
+            return $this->redirectToRoute('cart');
+        }
+
+        $referer = $request->headers->get('referer');
+
+        return $this->redirect($referer);
     }
 
     /**

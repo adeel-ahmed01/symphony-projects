@@ -18,15 +18,20 @@
                 <ul class="list-group mb-3">
                     {% for item in cartItems %}
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                                <h6 class="my-0">{{ item.livre.titre }} x {{ app.session.get('cart')[item.livre.id] }}</h6>
-                                <small class="text-muted">{{ item.livre.auteur }}</small>
+                            <div class="d-flex">
+                                <small class="text-muted mr-2 p-0">
+                                    <a role="button" class="m-0 p-0 btn btn-link text-right text-danger" style="text-decoration: none" href="{{ path('cart_remove', {'livreId': item.livre.id}) }}">X</a>
+                                </small>
+                                <div class="m-0 p-0">
+                                    <h6 class="my-0">{{ item.livre.titre }} x {{ app.session.get('cart')[item.livre.id] }}</h6>
+                                    <small class="text-muted">{{ item.livre.auteur }}</small>
+                                </div>
                             </div>
                             <span class="text-muted">{{ item.livre.prix * app.session.get('cart')[item.livre.id] }} €</span>
                         </li>
                     {% endfor %}
                     <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (HT)</span>
+                        <span>Sous-total</span>
                         <strong>{{ totalPanier }} €</strong>
                     </li>
                     <li class="list-group-item d-flex justify-content-between bg-light">
@@ -36,6 +41,12 @@
                         </div>
                         <span class="text-success">+ {{ totalPanier * 0.20 }} €</span>
                     </li>
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Livraison</h6>
+                        </div>
+                        <span class="text-success">Offerte</span>
+                    </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total à payer (TTC)</span>
                         <strong>{{ totalPanier + (totalPanier * 0.20) }} €</strong>
@@ -44,7 +55,7 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Données de facturation</h4>
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" action="{{ path('chekout_completed') }}">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="firstName">Nom</label>
@@ -85,7 +96,7 @@
 
                     <div class="row">
                         <div class="col-md-3 mb-3">
-                            <label for="zip">Code Postal</label>
+                            <label for="zip">Téléphone</label>
                             <input type="text" class="form-control" id="zip" placeholder="" required>
                             <div class="invalid-feedback">
                                 Zip code required.
@@ -93,10 +104,18 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <label for="zip">Ville</label>
+                            <label for="zip">Code Postal</label>
                             <input type="text" class="form-control" id="zip" placeholder="" required>
                             <div class="invalid-feedback">
                                 Zip code required.
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 mb-3">
+                            <label for="zip">Ville</label>
+                            <input type="text" class="form-control" id="zip" placeholder="" required>
+                            <div class="invalid-feedback">
+                                City code required.
                             </div>
                         </div>
                     </div>
@@ -134,7 +153,7 @@
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="cc-expiration">Date d'expiration</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                            <input type="text" class="form-control" id="cc-expiration" placeholder="JJ/MM/AAAA" required>
                             <div class="invalid-feedback">
                                 Expiration date required
                             </div>
