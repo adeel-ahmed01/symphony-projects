@@ -16,35 +16,41 @@
 {# CONTENT #}
 {% block body %}
 
-    {# Formulaire #}
-    <div class="card filters">
-        <h3>Recherche</h3>
-        <form class="form-inline my-2 my-lg-0" action="{{path('home_filter')}}" method="POST">
-           
-            {# Champ recherche #}
-            <input 
-                class="form-control mr-sm-2" 
-                id="search"
-                name="search"
-                type="text" placeholder="Rechercher..." 
-                aria-label="Search"
-            >
 
-            {# Catégorie de recherche #}
-            <div class="form-group">
-                <select class="form-control" id="categorie" name="categorie">
-                    <option value="titre">Titre</option>
-                    <option value="editeur">Editeur</option>
-                    <option value="auteur">Auteur</option>
-                </select>
-            </div>
-
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
 
     {# Tous les livres #}
     <div class="container">
+
+        {# Formulaire #}
+        <div class="row">
+            <div class="card filters">
+                <h3>Filtrer</h3>
+                <form class="form-inline my-2 my-lg-0" action="{{path('home_filter')}}" method="POST">
+
+                    {# Champ recherche #}
+                    <input
+                            class="form-control"
+                            id="search"
+                            name="search"
+                            type="text" placeholder="Rechercher..."
+                            aria-label="Search"
+                            required
+                    >
+
+                    {# Catégorie de recherche #}
+                    <div class="form-group mx-2">
+                        <select class="form-control" id="categorie" name="categorie">
+                            <option value="titre">Titre</option>
+                            <option value="editeur">Editeur</option>
+                            <option value="auteur">Auteur</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
         <div class="row">
 
         {# Affichage aucun livre trouvé #}
@@ -54,21 +60,24 @@
 
         {# Affiches livres #}
         {% for livre in livres %}
-            <div class="card book">
-                <div class="card-body">
-                    <a href="books/{{livre.id}}">
-                        <img src="{{livre.image}}" class="card-img-top" style="width: 15rem;" >
-                    </a>
-                    <hr>
-                    <h3> {{livre.titre}} </h3>
-                    <p> <strong> Prix : </strong> {{livre.prix}} € </p>
-                    <p> <strong> Editeur : </strong> {{livre.editeur}} </p>
-                    <hr>
-                    <p class="add">
-                        <a href="{{ path('cart_add', {'livreId': livre.id}) }}">
-                            Ajouter au panier <i class="fas fa-plus-circle"></i>
+            <div class="card book border border-dark w-30 d-flex flex-column justify-content-end bg-light">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="text-center">
+                        <a href="books/{{livre.id}}">
+                            <img src="{{livre.image}}" class="card-img-top book-image img-thumbnail mx-0" style="width: 17rem;" >
                         </a>
-                    </p>
+                    </div>
+                    <hr>
+                    <h4 class="text-center"> {{livre.titre}} </h4>
+                    <div class="d-flex justify-content-between">
+                        <p> <strong> Prix : </strong> {{livre.prix}} € </p>
+                        <p class="mb-0"> <strong> Editeur : </strong> {{livre.editeur}}</p>
+                    </div>
+                    <div class="text-right align-bottom">
+                        <a class="btn btn-secondary rounded-circle" href="{{ path('cart_add', {'livreId': livre.id}) }}">
+                            <i class="fas fa fa-shopping-cart"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         {% endfor %}

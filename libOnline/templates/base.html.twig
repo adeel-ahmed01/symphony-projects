@@ -49,16 +49,26 @@
                     </li>
                 {% else %}
                     <li class="nav-item dropdown">
+<<<<<<< HEAD
                         <a class="btn btn-default btn-info navbar-btn mr-1" href="{{ path('login') }}" role="button">S'identifier <span class="caret"></span></a>
                         <a class="btn btn-default btn-warning" href="{{ path('registration.register') }}"><b>Créer un compte </b></a>
                         {#<ul id="login-dp" class="dropdown-menu" role="menu">
+=======
+                        <a class="btn btn-default btn-info navbar-btn mr-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">S'identifier <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu w100 text-center" role="menu">
+>>>>>>> 3f6ae6f21e7360825dc462eda61de0a24b474da2
                             <li class="bg-transparent">
-                                <div class="row bg-white m-3">
+                                <div class="row bg-transparent m-3">
                                     <div class="col-md-12">
                                         <form class="form-sign-in" method="post" id="login-nav">
                                             <div class="form-group">
+<<<<<<< HEAD
                                                 <label class="sr-only" for="_username">Email address</label>
                                                 <input type="email" class="form-control" id="registration_email" name="_username" placeholder="Email address" required>
+=======
+                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                <input type="email" class="form-control" id="registration_email" name="_email" placeholder="Email" required>
+>>>>>>> 3f6ae6f21e7360825dc462eda61de0a24b474da2
                                             </div>
                                             <div class="form-group">
                                                 <label class="sr-only" for="_password">Password</label>
