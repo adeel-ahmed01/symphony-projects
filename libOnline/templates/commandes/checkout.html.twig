@@ -20,7 +20,7 @@
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                             <div>
                                 <h6 class="my-0">{{ item.livre.titre }} x {{ app.session.get('cart')[item.livre.id] }}</h6>
-                                <small class="text-muted">{{ item.livre.editeur }}</small>
+                                <small class="text-muted">{{ item.livre.auteur }}</small>
                             </div>
                             <span class="text-muted">{{ item.livre.prix * app.session.get('cart')[item.livre.id] }} €</span>
                         </li>
