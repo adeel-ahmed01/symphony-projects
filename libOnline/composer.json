@@ -19,9 +19,8 @@
         "symfony/http-client": "4.4.*",
         "symfony/intl": "4.4.*",
         "symfony/mailer": "4.4.*",
-        "symfony/maker-bundle": "^1.19",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/orm-pack": "^1.0",
+        "symfony/orm-pack": "*",
         "symfony/process": "4.4.*",
         "symfony/security-bundle": "4.4.*",
         "symfony/serializer-pack": "*",
@@ -37,6 +36,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "symfony/maker-bundle": "^1.19",
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
@@ -83,7 +83,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "4.4.*"
         }
     }
