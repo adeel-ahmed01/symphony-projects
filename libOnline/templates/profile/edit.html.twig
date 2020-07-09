@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'ProfilInfo' %}
+
+{% block stylesheets %}
+    {#{{ parent() }}
+    {{ encore_entry_link_tags('profil_form') }}#}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-xl-5">
+        <legend>Veuillez compléter votre profil</legend>
+        {{ include('profile/_form.html.twig') }}
+    </div>
+
+{% endblock %}
