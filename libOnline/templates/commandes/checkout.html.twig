@@ -36,7 +36,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between bg-light">
                         <div class="text-success">
-                            <h6 class="my-0">Taxe</h6>
+                            <h6 class="my-0">TVA</h6>
                             <small>20%</small>
                         </div>
                         <span class="text-success">+ {{ totalPanier * 0.20 }} €</span>
@@ -79,7 +79,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">@</span>
                             </div>
-                            <input type="email" class="form-control" id="username" placeholder="monadresse@example.com" required>
+                            <input type="email" class="form-control" id="username" placeholder="monadresse@example.com" value="{{ app.user ? app.user.email : '' }}" required>
                             <div class="invalid-feedback" style="width: 100%;">
                                 Your username is required.
                             </div>
@@ -153,7 +153,7 @@
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="cc-expiration">Date d'expiration</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="JJ/MM/AAAA" required>
+                            <input type="date" class="form-control" id="cc-expiration" placeholder="JJ/MM/AAAA" required>
                             <div class="invalid-feedback">
                                 Expiration date required
                             </div>
