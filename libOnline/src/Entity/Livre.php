@@ -43,7 +43,7 @@ class Livre
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $editeur;
+    private $auteur;
 
     /**
      * @ORM\OneToMany(targetEntity=Commandes::class, mappedBy="livre", orphanRemoval=true)
@@ -113,14 +113,14 @@ class Livre
         return $this;
     }
 
-    public function getEditeur(): ?string
+    public function getAuteur(): ?string
     {
-        return $this->editeur;
+        return $this->auteur;
     }
 
-    public function setEditeur(string $editeur): self
+    public function setAuteur(string $auteur): self
     {
-        $this->editeur = $editeur;
+        $this->auteur = $auteur;
 
         return $this;
     }

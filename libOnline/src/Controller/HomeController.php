@@ -51,9 +51,9 @@ class HomeController extends AbstractController
                     }
                 } 
 
-                if( $categorie === 'editeur') {
-                    $editeur = strtolower($livre->getEditeur());
-                    if (strpos($editeur, $searchString) !== false ) {
+                if( $categorie === 'auteur') {
+                    $auteur = strtolower($livre->getAuteur());
+                    if (strpos($auteur, $searchString) !== false ) {
                         $newLivres[] = $livre;
                     }
                 }

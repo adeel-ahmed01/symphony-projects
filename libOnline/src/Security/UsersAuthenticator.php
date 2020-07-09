@@ -97,7 +97,8 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('profile.edit'));
+        return new RedirectResponse($this->urlGenerator->generate('profile.edit',
+            ['id' => $token->getUser()->getId()]));
     }
 
     protected function getLoginUrl()
