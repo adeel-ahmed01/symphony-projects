@@ -28,7 +28,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Administration')
+            ->setTitle('Gestion Livres')
         ;
     }
 
@@ -36,9 +36,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linkToDashboard('Dashboard', 'fa-home'),
-
-            MenuItem::section('Entités'),
+            MenuItem::linktoRoute('Retour site web', 'fa fa-home','home', array($this->redirectToRoute('home'))),
+            MenuItem::linkToDashboard('Tableau de bord', 'fa fa-bars'),
             MenuItem::linkToCrud('Livres', 'fa fa-tags', Livre::class),
 
         ];

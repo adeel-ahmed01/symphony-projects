@@ -35,13 +35,13 @@ class Livre
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string
+     * @var string|null
      */
     private $image;
 
     /**
      * @Vich\UploadableField(mapping="book_images", fileNameProperty="image")
-     * @var File
+     * @var File|null
      */
     private $imageFile;
 
@@ -59,6 +59,11 @@ class Livre
      * @ORM\ManyToOne(targetEntity=Oeuvre::class, inversedBy="livres")
      */
     private $oeuvre;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
 
     public function __construct()
     {
@@ -106,19 +111,23 @@ class Livre
         return $this;
     }
 
-    public function getImageFile()
+    /**
+     * @return null|File
+     */
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
 
-        /*if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }*/
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+
     }
 
     public function getPrix(): ?float
@@ -179,6 +188,18 @@ class Livre
     public function setOeuvre(?Oeuvre $oeuvre): self
     {
         $this->oeuvre = $oeuvre;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

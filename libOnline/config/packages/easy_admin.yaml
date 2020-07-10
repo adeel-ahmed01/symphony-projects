@@ -1,19 +1,15 @@
 easy_admin:
     entities:
         Livre:
-          class: App\Entity\Livre
-
-          list:
-            fields:
-              - { property: 'image', type: 'image', base_path: '%app.path.book_images%' }
-            show:
-              fields:
-                - { property: 'image', type: 'image', base_path: '%app.path.book_images%' }
-          form:
-            fields:
-              - { property: 'imageFile', type: 'vich_image', label: 'Image' }
+            class: App\Entity\Livre
+            list:
+                fields:
+                  - { property: 'image', type: 'image', base_path: '%app.path.book_images%' }
+            form:
+                fields:
+                  - { property: 'imageFile', type: 'vich_image', label: 'image' }
     design:
-      form_theme:
-        - '@EasyAdmin/form/bootstrap_4.html.twig'
-        - '@VichUploader/Form/fields.html.twig'
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@VichUploader/Form/fields.html.twig'
 
