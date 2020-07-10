@@ -55,18 +55,19 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Données de facturation</h4>
-                <form class="needs-validation" action="{{ path('chekout_completed') }}">
+                {{ form_start(checkoutForm, {'action': path('chekout_completed', {'user': app.user.id}), 'method': 'POST'}) }}
+                <form class="needs-validation">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="firstName">Nom</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                            {{ form_row(checkoutForm.nom, {label: false}) }}
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Prénom</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                            {{ form_row(checkoutForm.prenom, {label: false}) }}
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
@@ -88,7 +89,7 @@
 
                     <div class="mb-3">
                         <label for="address">Addresse</label>
-                        <input type="text" class="form-control" id="address" placeholder="numéro, rue..." required>
+                        {{ form_row(checkoutForm.adresse, {label: false}) }}
                         <div class="invalid-feedback">
                             Please enter your shipping address.
                         </div>
@@ -97,7 +98,7 @@
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="zip">Téléphone</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
+                            {{ form_row(checkoutForm.tel, {label: false}) }}
                             <div class="invalid-feedback">
                                 Zip code required.
                             </div>
@@ -105,7 +106,7 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="zip">Code Postal</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
+                            {{ form_row(checkoutForm.codepostal, {label: false}) }}
                             <div class="invalid-feedback">
                                 Zip code required.
                             </div>
@@ -113,12 +114,13 @@
 
                         <div class="col-md-5 mb-3">
                             <label for="zip">Ville</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
+                            {{ form_row(checkoutForm.ville, {label: false}) }}
                             <div class="invalid-feedback">
                                 City code required.
                             </div>
                         </div>
                     </div>
+                    {{ form_widget(checkoutForm) }}
                     <hr class="mb-4">
 
                     <h4 class="mb-3">Paiement</h4>
@@ -169,6 +171,7 @@
                     <hr class="mb-4">
                     <button class="btn btn-primary btn-lg btn-block" type="submit">Confirmer la commande</button>
                 </form>
+                {{ form_end(checkoutForm) }}
             </div>
         </div>
     </div>

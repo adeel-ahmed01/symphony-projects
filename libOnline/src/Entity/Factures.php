@@ -29,11 +29,6 @@ class Factures
      */
     private $prixTotal;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Livre::class, mappedBy="facture", cascade={"persist", "remove"})
-     */
-    private $livre;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -53,23 +48,6 @@ class Factures
     public function setPrixTotal(float $prixTotal): self
     {
         $this->prixTotal = $prixTotal;
-
-        return $this;
-    }
-
-    public function getLivre(): ?Livre
-    {
-        return $this->livre;
-    }
-
-    public function setLivre(Livre $livre): self
-    {
-        $this->livre = $livre;
-
-        // set the owning side of the relation if necessary
-        if ($livre->getFacture() !== $this) {
-            $livre->setFacture($this);
-        }
 
         return $this;
     }

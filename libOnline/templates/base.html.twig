@@ -46,6 +46,7 @@
                         </a>
                         <ul class="dropdown-menu mx-auto">
                             <li><a class="text-center ml-3" href="{{path('profile.edit', {id: app.user.id})}}">Mes informations</a></li>
+                            <li><a class="text-center ml-3" href="{{path('commandes_user', {'user': app.user.id})}}">Mes commandes</a></li>
                         </ul>
                     </li>
                 {% else %}

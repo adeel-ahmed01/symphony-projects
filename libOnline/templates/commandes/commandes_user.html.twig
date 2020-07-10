@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container py-5">
+        <div class="row">
+            <h1>Mes commandes</h1>
+        </div>
+        <div class="row">
+            {% if commandes | length > 0 %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date de commande</th>
+                        <th>Payé le</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  for commande in commandes %}
+                        <tr>
+                            <td><h6 class="my-0">{{ commande.dateCommande | date }}</h6></td>
+                            <td><h6 class="my-0">{{ commande.facture.datepaiement | date }}</h6></td>
+                            <td><h6 class="my-0">{{ commande.prixTTC }} €</h6></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                </table>
+            {% else %}
+                <p>Vous n'avez pas de commandes en cours.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+

@@ -56,11 +56,6 @@ class Livre
     private $auteur;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commandes::class, mappedBy="livre", orphanRemoval=true)
-     */
-    private $livres;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Oeuvre::class, inversedBy="livres")
      */
     private $oeuvre;
